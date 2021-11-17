@@ -1,7 +1,27 @@
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\bin\Debug\Arkanoid1986.exe.config
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\bin\Debug\Arkanoid1986.exe
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\bin\Debug\Arkanoid1986.pdb
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.AssemblyReference.cache
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\MainWindow.g.cs
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\HighScore.g.cs
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\NewSaveName.g.cs
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\SaveLoadGame.g.cs
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\App.g.cs
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986_MarkupCompile.cache
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986_MarkupCompile.lref
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\MainWindow.baml
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\HighScore.baml
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\NewSaveName.baml
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\SaveLoadGame.baml
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.g.resources
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.Properties.Resources.resources
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.GenerateResource.cache
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.CoreCompileInputs.cache
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.exe
+C:\Users\isych\Desktop\arkanoid-main\Arkanoid1986\obj\Debug\Arkanoid1986.pdb
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\bin\Debug\Arkanoid1986.exe.config
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\bin\Debug\Arkanoid1986.exe
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\bin\Debug\Arkanoid1986.pdb
-F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.AssemblyReference.cache
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\MainWindow.g.cs
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\HighScore.g.cs
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\NewSaveName.g.cs

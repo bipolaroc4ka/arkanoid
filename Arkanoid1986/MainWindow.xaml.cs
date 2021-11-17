@@ -95,6 +95,7 @@ namespace Arkanoid1986
         }
         void CheckSoundHit()
         {
+            
             try
             {
                 if (File.Exists(@"Sound\hit.wav"))
@@ -298,15 +299,18 @@ namespace Arkanoid1986
             
            
         }
-
+      
         private void timer_Tick(object sender, EventArgs e)
         {
             MoveBall();
             
+            
         }
+        
         bool CheckCollisionBlocks()
         {
             Rect b = new Rect((double)Ball.GetValue(Canvas.LeftProperty), (double)Ball.GetValue(Canvas.TopProperty), Ball.Width, Ball.Height);
+            
             foreach (var item in _bricks)
             {
                 if (item is Rectangle)
@@ -338,6 +342,7 @@ namespace Arkanoid1986
         }
        void Fill()
         {
+           
             int x = 0, y = 0;
             //красные прямоугольники
             for (int i = 0; i <= 5; i++)
@@ -617,7 +622,7 @@ namespace Arkanoid1986
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-           
+            
             if (e.Key == Key.G && CheckStartGame() == false&& load ==false)
             {
                 canvasGame.Focus();
