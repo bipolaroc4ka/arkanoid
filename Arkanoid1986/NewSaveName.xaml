@@ -1,0 +1,52 @@
+﻿<Window x:Class="Arkanoid1986.NewSaveName"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Arkanoid1986"
+        mc:Ignorable="d"
+        Title="New Save" Height="681.781" Width="754.384">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="btTemplate">
+            <Border CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150" >
+                <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Save" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+            </Border>
+        </ControlTemplate>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="LightCoral" FontFamily="Broadway"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="Black">
+        <StackPanel>
+            <Button Content="Button" Template="{StaticResource ResourceKey=btTemplate}" Margin="35,30,0,527" HorizontalAlignment="Left" Width="225" Click="Button_Click" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" >
+            <TextBox x:Name="TextBoxFileName" Style="{StaticResource MyWaterMarkStyle}" Tag="Enter Save Name and click SAVE" Height="115" Margin="105,200,73,300" FontWeight="Bold" FontFamily="Broadway" FontSize="20"/>           
+            
+        </StackPanel>
+        <Label Content="New Save" Foreground="OrangeRed" FontSize="50" FontFamily="Broadway" FontWeight="Bold" VerticalAlignment="Top" Margin="170,80,157,0" Height="85" HorizontalAlignment="Center"  />
+    </Grid>
+</Window>

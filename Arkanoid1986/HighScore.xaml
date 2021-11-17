@@ -1,0 +1,15 @@
+﻿<Page x:Class="Arkanoid1986.HighScore"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Arkanoid1986"
+      mc:Ignorable="d" 
+      d:DesignHeight="681.781" d:DesignWidth="754.384"
+      Title="HighScore" MinWidth="682" MinHeight="753">
+    
+    <Grid Background="Black" Focusable="True">
+        <Label Content="High score" Foreground="OrangeRed" FontSize="50" FontFamily="Broadway" FontWeight="Bold" VerticalAlignment="Top" Margin="10,55,10,0" Height="85" HorizontalAlignment="Center"  />
+        <ListView  x:Name="table" x:FieldModifier="public" Margin="35,140,34,38" Background="Black" Foreground="LightSteelBlue" FontFamily="Broadway" FontSize="20" />
+    </Grid>
+</Page>

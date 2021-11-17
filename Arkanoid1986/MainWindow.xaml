@@ -1,0 +1,325 @@
+﻿<Window x:Class="Arkanoid1986.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Arkanoid1986"
+        mc:Ignorable="d"
+        Title="Arkanoid 1986" Height="682" Width="754" ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="labelStartGame">
+                        <DoubleAnimation From="0" To="400"
+    AutoReverse="False"    
+    Duration="0:0:3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+        
+       
+        
+    </Window.Triggers>
+    
+    <Window.Resources>
+       
+        <Style x:Key="aniTextBlock1" TargetType="TextBlock">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="OrangeRed" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" From="OrangeRed" To="DarkBlue" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="startButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="startGame"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="startGame" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Start Game" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="pauseButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="pauseGame"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="pauseGame" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Pause Game" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="highScoreButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="highscore"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="highscore" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="High Score" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="playSoundButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="playSound"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="playSound" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Play Sound" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="muteSoundButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="muteSound"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="muteSound" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Mute Sound" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="saveLoadButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation   
+                                        Storyboard.TargetName="saveLoad"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="0" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="saveLoad" CornerRadius="25" BorderBrush="DarkGoldenrod" BorderThickness="2"
+                    Background="LightBlue" Height="45" Width="150">
+                            <ContentControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Save/Load" FontFamily="Broadway" FontWeight="Bold" FontSize="18"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        
+    </Window.Resources>
+    <Canvas x:Name="canvasGame" Background="LightBlue">
+        <StackPanel x:Name="Menu" Height="600" Canvas.Left="573" Width="175" Background="Black" Canvas.Top="51">
+
+            <Button x:Name="startGame" Style="{StaticResource ResourceKey=startButton}" Margin="0,-40,10,0" Click="Button_Click" Height="124"/>
+
+            <Button x:Name="pause" Style="{StaticResource ResourceKey=pauseButton}"  Margin="0,-30,10,0" Height="124" Click="pause_Click" />
+            <Button x:Name="highScore" Style="{StaticResource ResourceKey=highScoreButton}" Margin="0,-20,10,0" Click="Button_Click_1" Height="124"/>
+            <Button x:Name="sound" Style="{StaticResource ResourceKey=playSoundButton}" Margin="0,-20,10,0" Height="124" Click="Button_Click_2"/>
+            <Button x:Name="Notsound" Style="{StaticResource ResourceKey=muteSoundButton}" Margin="0,-20,10,0" Height="124" Click="Notsound_Click" />
+            <Button x:Name="SaveGameButton" Style="{StaticResource ResourceKey=saveLoadButton}" Margin="0,-20,10,0" Height="124" Click="SaveGame_Click" />
+
+
+
+
+        </StackPanel>
+        <Border x:Name="borderTop" Background="Black" Width="748" Height="51">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="Score" Foreground="OrangeRed" FontSize="20" FontFamily="Broadway" Margin="55,10,300,10" FontStretch="UltraCondensed" TextDecorations="{x:Null}" FontWeight="ExtraBlack"> SCORE:
+                   
+                </TextBlock>
+                <TextBlock x:Name="Highscore" Style="{StaticResource aniTextBlock1}"  Foreground="OrangeRed" FontSize="20" FontFamily="Broadway" Height="37" Margin="0,10,0,4" Width="205"><Run Text="High Score:"/>
+               
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        <Border x:Name="borderBot" Background="Black" Width="563" Height="51" Canvas.Top="600" Canvas.Left="10">
+            <TextBlock x:Name="Level" Foreground="OrangeRed" FontSize="20" FontFamily="Broadway" Margin="55,10,18,10" FontStretch="UltraCondensed" TextDecorations="{x:Null}" FontWeight="ExtraBlack"> Level:</TextBlock>
+        </Border>
+
+        <Border x:Name="borderLeft" Background="Black" Width="648" Height="57" Canvas.Top="297" RenderTransformOrigin="0.5,0.5" Canvas.Left="-299">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-89.789"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <StackPanel  Orientation="Vertical">
+                <Image x:Name="life1" Source="Img/life.png" Height="50" Margin="0,0,-500,0">
+                    <Image.RenderTransform>
+                        <ScaleTransform x:Name="MyAnimatedScaleTransform2" 
+          ScaleX="1" ScaleY="1"/>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Loaded" SourceName="life1">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+               Storyboard.TargetName="MyAnimatedScaleTransform2"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                To="1.3" Duration="0:0:0.3" AutoReverse="True"
+                RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+
+
+                <Image x:Name="life2" Source="Img/life.png" Height="50"  Margin="0,-50,-400,0">
+                    <Image.RenderTransform>
+                        <ScaleTransform x:Name="MyAnimatedScaleTransform1" 
+          ScaleX="1" ScaleY="1"/>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Loaded" SourceName="life2">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+               Storyboard.TargetName="MyAnimatedScaleTransform1"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                To="1.3" Duration="0:0:0.3" AutoReverse="True"
+                RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+                <Image x:Name="life3" Source="Img/life.png" Height="50"  Margin="0,-50,-300,0">
+
+                    <Image.RenderTransform>
+                        <ScaleTransform x:Name="MyAnimatedScaleTransform" 
+          ScaleX="1" ScaleY="1"/>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Loaded" SourceName="life3">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+               Storyboard.TargetName="MyAnimatedScaleTransform"
+                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                To="1.3" Duration="0:0:0.3" AutoReverse="True"
+                RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>                    
+                </Image>
+
+            </StackPanel>
+        </Border>
+        <Rectangle x:Name="rectTop" Fill="Blue" Height="21" Width="524" Canvas.Left="50" Canvas.Top="51"/>
+        <Rectangle x:Name="rectBot" Fill="Blue" Height="21" Width="523" Canvas.Left="50" Canvas.Top="579"/>
+        <Rectangle x:Name="rectLeft" Fill="Blue" Height="25" Width="546" Canvas.Left="-205" Canvas.Top="321" RenderTransformOrigin="0.503,0.912">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.982"/>
+                    <TranslateTransform X="-18.046" Y="-15.241"/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle x:Name="rectRight" Fill="Blue" Height="25" Width="547" Canvas.Left="294" Canvas.Top="319" RenderTransformOrigin="0.503,0.912">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.19"/>
+                    <TranslateTransform X="-18.046" Y="-15.241"/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label x:Name="labelStartGame" Content="Press START GAME or G" Canvas.Left="100" Canvas.Top="235" Width="445" FontFamily="Broadway" FontWeight="Bold" FontSize="24" Height="135" HorizontalContentAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Right" IsHitTestVisible="False" VerticalContentAlignment="Center"/>
+        <Ellipse x:Name="Ball" Width="22" Canvas.Top="537" Canvas.Left="288" Fill="Black" Height="22"/>
+        <Rectangle x:Name="rocket" RadiusX="5" RadiusY="5" Fill="Maroon" Width="82" Height="15" Canvas.Left="258" Canvas.Top="559"/>
+    </Canvas>
+</Window>
