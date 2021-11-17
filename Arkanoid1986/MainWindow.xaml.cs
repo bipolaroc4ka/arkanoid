@@ -169,7 +169,7 @@ namespace Arkanoid1986
                 Score.Text = "Score    " + score.ToString();
                 Level.Text = "Level    " + level.ToString();
                 _bricks.Clear();
-                canvasGame.Children.RemoveRange(11, 30);
+                canvasGame.Children.RemoveRange(11, 32);
                 foreach (var item in temp)
                 {
                     _bricks.Add(item);
@@ -560,8 +560,8 @@ namespace Arkanoid1986
             win.Content = high;
             
             win.ShowsNavigationUI = false;
-            win.Height = 681.781;
-            win.Width = 754.384;
+            win.Height = 681;
+            win.Width = 754;
            
             win.ShowDialog();
         }
