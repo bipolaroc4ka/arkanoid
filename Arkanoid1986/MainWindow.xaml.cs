@@ -651,22 +651,49 @@ namespace Arkanoid1986
             }
             if (CheckCollisionBlocks() == true)
             {
-                int colBlockBot = (int)colBlock.Bottom + 24;
-                int bTop = (int)b.Bottom;
-                int colBlockTop = (int)colBlock.Top - 23;
-                int bBot = (int)b.Top;
-
-                if (colBlockBot == bTop)
+               
+                double colBlockBot = colBlock.BottomRight.X-8;
+                double colBlockTop = colBlock.TopRight.X-5.5;
+                double colBlockTopLef = colBlock.TopLeft.X + 4;
+                double colBlockBotLef = colBlock.BottomLeft.X + 4;
+               
+                Point point = new Point(colBlockBot, colBlock.Top-5);
+                Point point1 = new Point(colBlockTop, colBlock.Bottom+5);
+                Point point2 = new Point(colBlockTopLef, colBlock.Bottom+5);
+                Point point3 = new Point(colBlockBotLef, colBlock.Bottom-5);
+                if (b.Contains(point))
+                {
+                    //MessageBox.Show("collision 2");
+                    top = true;
+                }
+                else if(b.Contains(point1))
                 {
                     top = false;
                 }
-                else if (colBlockTop == bBot)
+                else if(b.Contains(point2))
+                {
+                    top = false;
+                }
+                else if(b.Contains(point3))
                 {
                     top = true;
+
                 }
+                else 
+                {
+                    if (top == true)
+                    {
+                        top = false;
+                    }
+                    else 
+                    {
+                        top = true;
+                    }
 
+                }
+               
 
-                top = false;
+                //top = false;
                 score += 10;
                 Score.Text = "SCORE:     " + score.ToString();
                 if (soud == true)

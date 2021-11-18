@@ -339,7 +339,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Label x:Name="labelStartGame" Content="Press START GAME or G" Canvas.Left="100" Canvas.Top="235" Width="445" FontFamily="Broadway" FontWeight="Bold" FontSize="24" Height="135" HorizontalContentAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Right" IsHitTestVisible="False" VerticalContentAlignment="Center"/>
-        <Ellipse x:Name="Ball" Style="{StaticResource bal}" Width="22" Canvas.Top="532" Canvas.Left="290"  Height="22"/>
+        <Ellipse x:Name="Ball" Style="{StaticResource bal}" Width="22" Canvas.Top="532" Canvas.Left="288"  Height="22"/>
         <Rectangle x:Name="rocket" Style="{StaticResource paddle}"   Width="82" Height="15" Canvas.Left="258" Canvas.Top="559"/>
     </Canvas>
 </Window>
