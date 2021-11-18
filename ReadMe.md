@@ -6,3 +6,6 @@ Functions:
 - Life
 - Level
 - Sound Effects
+
+Made with Windows Presentation Foundation (WPF).
+Language: C# 
