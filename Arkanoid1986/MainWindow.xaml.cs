@@ -65,6 +65,7 @@ namespace Arkanoid1986
 
             Level.Text = "Level:    " + level.ToString();
             Score.Text += "     " + score.ToString();
+            
             if (fromScoreFile.Count()!=0)
             {
                 highscore = fromScoreFile.Max();
@@ -237,6 +238,7 @@ namespace Arkanoid1986
         }
         void FillHighScore()
         {
+           
             if (fromScoreFile.Count()!=0)
             {
                 IEnumerable<int> vs = fromScoreFile.Reverse();
@@ -290,10 +292,12 @@ namespace Arkanoid1986
                 using (BinaryWriter writer = new BinaryWriter(File.Open(fullPath, FileMode.OpenOrCreate)))
                 {
                    
+                   
                     foreach (int s in fromScoreFile)
                     {
-                        writer.Write(Convert.ToInt32(s));
+                        writer.Write(s);
                     }
+                   
                 }
             }
             catch (Exception e)
@@ -592,7 +596,7 @@ namespace Arkanoid1986
                 left = true;
             }
            
-            else if (CheckLoose() == true)
+            if (CheckLoose() == true)
             {
                 if (life == 0)
                 {
@@ -808,7 +812,7 @@ namespace Arkanoid1986
         
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-          
+            
             if (e.Key == Key.G && CheckStartGame() == false&& load ==false)
             {
                 canSave = true;
