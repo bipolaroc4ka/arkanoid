@@ -38,6 +38,7 @@ namespace Arkanoid1986
         bool loose = false;
         bool win = false;
         int speedTop = 5;
+       
         double speedLeft = 1;
         int level = 1;
         int life = 3;
@@ -650,20 +651,20 @@ namespace Arkanoid1986
             }
             if (CheckCollisionBlocks() == true)
             {
-                //int colBlockBot = (int)colBlock.Bottom+24;
-                //int bTop = (int)b.Bottom;
-                //int colBlockTop = (int)colBlock.Top-23;
-                //int bBot = (int)b.Top;
-                
-                //if (colBlockBot == bTop)
-                //{
-                //    top = false;
-                //}
-                //else if(colBlockTop == bBot)
-                //{
-                //    top = true;
-                //}
-                
+                int colBlockBot = (int)colBlock.Bottom + 24;
+                int bTop = (int)b.Bottom;
+                int colBlockTop = (int)colBlock.Top - 23;
+                int bBot = (int)b.Top;
+
+                if (colBlockBot == bTop)
+                {
+                    top = false;
+                }
+                else if (colBlockTop == bBot)
+                {
+                    top = true;
+                }
+
 
                 top = false;
                 score += 10;
