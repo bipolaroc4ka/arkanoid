@@ -39,3 +39,4 @@ F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\A
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.CoreCompileInputs.cache
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\Arkanoid1986.exe
 F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\Arkanoid1986.pdb
+F:\ШАГ. ИФНО21\Программирование\VS_Project\СПД021\C#\Arkanoid1986\Arkanoid1986\obj\Debug\Arkanoid1986.csproj.AssemblyReference.cache

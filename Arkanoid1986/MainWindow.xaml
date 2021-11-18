@@ -18,13 +18,13 @@
                 </BeginStoryboard>
             </EventTrigger.Actions>
         </EventTrigger>
-        
-       
-        
+
+
+
     </Window.Triggers>
-    
+
     <Window.Resources>
-       
+
         <Style x:Key="aniTextBlock1" TargetType="TextBlock">
             <Setter Property="Foreground">
                 <Setter.Value>
@@ -231,12 +231,12 @@
         <Border x:Name="borderTop" Background="Black" Width="748" Height="51">
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="Score" Foreground="OrangeRed" FontSize="20" FontFamily="Broadway" Margin="55,10,300,10" FontStretch="UltraCondensed" TextDecorations="{x:Null}" FontWeight="ExtraBlack"> SCORE:
-                   
+
                 </TextBlock>
                 <TextBlock x:Name="Highscore" Style="{StaticResource aniTextBlock1}"  Foreground="OrangeRed" FontSize="20" FontFamily="Broadway" Height="37" Margin="0,10,0,4" Width="205"><Run Text="High Score:"/>
-               
+
                 </TextBlock>
-                
+
             </StackPanel>
         </Border>
         <Border x:Name="borderBot" Background="Black" Width="563" Height="51" Canvas.Top="600" Canvas.Left="10">
@@ -311,7 +311,7 @@
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
-                    </Image.Triggers>                    
+                    </Image.Triggers>
                 </Image>
 
             </StackPanel>
@@ -339,7 +339,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Label x:Name="labelStartGame" Content="Press START GAME or G" Canvas.Left="100" Canvas.Top="235" Width="445" FontFamily="Broadway" FontWeight="Bold" FontSize="24" Height="135" HorizontalContentAlignment="Center" UseLayoutRounding="True" HorizontalAlignment="Right" IsHitTestVisible="False" VerticalContentAlignment="Center"/>
-        <Ellipse x:Name="Ball" Style="{StaticResource bal}" Width="22" Canvas.Top="537" Canvas.Left="288"  Height="22"/>
-        <Rectangle x:Name="rocket" Style="{StaticResource paddle}"  RadiusX="10" RadiusY="10"  Width="82" Height="15" Canvas.Left="258" Canvas.Top="559"/>
+        <Ellipse x:Name="Ball" Style="{StaticResource bal}" Width="22" Canvas.Top="532" Canvas.Left="290"  Height="22"/>
+        <Rectangle x:Name="rocket" Style="{StaticResource paddle}"   Width="82" Height="15" Canvas.Left="258" Canvas.Top="559"/>
     </Canvas>
 </Window>

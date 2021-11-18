@@ -38,7 +38,7 @@ namespace Arkanoid1986
         bool loose = false;
         bool win = false;
         int speedTop = 5;
-        int speedLeft = 3;
+        double speedLeft = 1;
         int level = 1;
         int life = 3;
         int speedRocket = 20;
@@ -48,7 +48,7 @@ namespace Arkanoid1986
         int highscore = 0;
         bool paus = false;
         bool load = false;
-
+        bool canSave = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -90,7 +90,7 @@ namespace Arkanoid1986
             catch (Exception)
             {
 
-                throw;
+               
             }
         }
         void CheckSoundHit()
@@ -109,16 +109,25 @@ namespace Arkanoid1986
             catch (Exception)
             {
 
-                throw;
+               
             }
             
         }
         public void LoadGame(string name)
         {
+            string fullPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves\" + name;
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save");
+            }
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves");
+            }
             List<Rectangle> temp = new List<Rectangle>();
             try
             {
-                using (BinaryReader reader = new BinaryReader(File.Open(name, FileMode.Open)))
+                using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.Open)))
                 {
                     // пока не достигнут конец файла
                     // считываем каждое значение из файла
@@ -138,8 +147,7 @@ namespace Arkanoid1986
                         score = reader.ReadInt32();
                         life = reader.ReadInt32();
                         level = reader.ReadInt32();
-                        speedTop = reader.ReadInt32();
-                        speedLeft = reader.ReadInt32();
+                        speedTop = reader.ReadInt32();                       
 
                     }
                 }
@@ -181,17 +189,27 @@ namespace Arkanoid1986
                 Canvas.SetLeft(rocket, leftCoordRocket);
                 temp.Clear();
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                MessageBox.Show(e.Message);
             }
         }
         void SaveGame(string name)
         {
+            string fullPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves\" + name;
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save");
+            }
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\Saves");
+            }
+
             try
             {
-                using (BinaryWriter writer = new BinaryWriter(File.Open(name, FileMode.Create)))
+                using (BinaryWriter writer = new BinaryWriter(File.Open(fullPath, FileMode.Create)))
                 {
                     // записываем в файл значение каждого поля структуры
                     foreach (var s in _bricks)
@@ -203,17 +221,16 @@ namespace Arkanoid1986
                         writer.Write(score);
                         writer.Write(life);
                         writer.Write(level);
-                        writer.Write(speedTop);
-                        writer.Write(speedLeft);
+                        writer.Write(speedTop);                       
                         
                     }
                 }
                 MessageBox.Show("Game saved");
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                MessageBox.Show(e.Message);
             }
             
         }
@@ -234,9 +251,14 @@ namespace Arkanoid1986
         }
         void ReadScoreFromFile()
         {
+            string fullPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\" + path;
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save");
+            }
             try
             {
-                using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.OpenOrCreate)))
+                using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.OpenOrCreate)))
                 {
                     // пока не достигнут конец файла
                     // считываем каждое значение из файла
@@ -247,18 +269,24 @@ namespace Arkanoid1986
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                MessageBox.Show(e.Message);
+
             }
            
         }
         void SaveToFile()
         {
+            string fullPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save\" + path;
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Arkanoid1986Save");
+            }
             try
             {
-                using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate)))
+                using (BinaryWriter writer = new BinaryWriter(File.Open(fullPath, FileMode.OpenOrCreate)))
                 {
                    
                     foreach (int s in fromScoreFile)
@@ -267,10 +295,10 @@ namespace Arkanoid1986
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                MessageBox.Show(e.Message);
             }
             
         }
@@ -306,7 +334,7 @@ namespace Arkanoid1986
             
             
         }
-        
+        Rect colBlock;
         bool CheckCollisionBlocks()
         {
             Rect b = new Rect((double)Ball.GetValue(Canvas.LeftProperty), (double)Ball.GetValue(Canvas.TopProperty), Ball.Width, Ball.Height);
@@ -319,6 +347,7 @@ namespace Arkanoid1986
                     Rect rect = new Rect((double)item.GetValue(Canvas.LeftProperty), (double)item.GetValue(Canvas.TopProperty), item.Width, item.Height);
                     if (b.IntersectsWith(rect))
                     {
+                        colBlock = rect;
                         _bricks.Remove(item);
                         canvasGame.Children.Remove(item);
                         return true;
@@ -370,7 +399,7 @@ namespace Arkanoid1986
                 rectangle.Height = 10;
                 rectangle.RadiusX = 5;
                 rectangle.RadiusY = 5;
-                Canvas.SetLeft(rectangle, 230 + x); Canvas.SetTop(rectangle, 100 + y);
+                Canvas.SetLeft(rectangle, 230+x); Canvas.SetTop(rectangle, 100 + y);
                 x += 10;
                 y += 20;
                 _bricks.Add(rectangle);
@@ -386,7 +415,7 @@ namespace Arkanoid1986
                 rectangle.Height = 10;
                 rectangle.RadiusX = 5;
                 rectangle.RadiusY = 5;
-                Canvas.SetLeft(rectangle, 330 + x); Canvas.SetTop(rectangle, 100 + y);
+                Canvas.SetLeft(rectangle, 330+x); Canvas.SetTop(rectangle, 100 + y);
                 x += 10;
                 y += 20;
                 _bricks.Add(rectangle);
@@ -402,7 +431,7 @@ namespace Arkanoid1986
                 rectangle.Height = 10;
                 rectangle.RadiusX = 5;
                 rectangle.RadiusY = 5;
-                Canvas.SetLeft(rectangle, 430 + x); Canvas.SetTop(rectangle, 100 + y);
+                Canvas.SetLeft(rectangle, 430+x); Canvas.SetTop(rectangle, 100 + y);
                 x += 10;
                 y += 20;
                 _bricks.Add(rectangle);
@@ -420,6 +449,14 @@ namespace Arkanoid1986
             Rect r = new Rect((double)rocket.GetValue(Canvas.LeftProperty), (double)rocket.GetValue(Canvas.TopProperty), rocket.Width, rocket.Height);
             if (b.IntersectsWith(r))
             {
+                int ballLeft = (int)b.Left;
+                int ballHeight = (int)b.Height;
+                int ballWidth = (int)b.Width;
+                int ballTop = (int)b.Top;
+                Point pointRight = new Point(ballLeft + ballWidth + 1, ballTop);
+                Point pointLeft = new Point(ballLeft - 1, ballTop);
+                Point pointTop = new Point(ballLeft, ballTop - 1);
+                Point pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
                 return true;
             }
             else
@@ -437,30 +474,111 @@ namespace Arkanoid1986
             }
             return false;
         }
-       
+
+
+        bool start = false;
         
        
         void MoveBall()
         {
-            
-            if (top == true)
-            {
-                Canvas.SetTop(Ball, Canvas.GetTop(Ball) - speedTop);
-
-            }
-            if (top == false)
+            Rect b = new Rect((double)Ball.GetValue(Canvas.LeftProperty), (double)Ball.GetValue(Canvas.TopProperty), Ball.Width, Ball.Height);
+            Rect r = new Rect((double)rocket.GetValue(Canvas.LeftProperty), (double)rocket.GetValue(Canvas.TopProperty), rocket.Width, rocket.Height);
+            if (top==false)
             {
                 Canvas.SetTop(Ball, Canvas.GetTop(Ball) + speedTop);
+            }
+            if (top==true)
+            {
+                Canvas.SetTop(Ball, Canvas.GetTop(Ball) - speedTop);
+            }
+            if (CheckColisionBallRocket() == true)
+            {
+
+                
+                top = true;
+                double xRight = r.TopRight.X - 15;
+                double xleft = r.TopLeft.X + 15;
+                double xCenter = r.TopLeft.X + 42.3;
+                double xLeftPart = r.TopLeft.X;
+                double xRightPart = r.TopRight.X;
+                Point tempRight = new Point(xRight, r.Top-5);
+                Point tempLeft = new Point(xleft, r.Top-5);
+                Point tempCenter = new Point(xCenter, r.Top-5);
+                Point tempLeftPart = new Point(xLeftPart, r.Top-5);
+                Point tempRightPart = new Point(xRightPart, r.Top-5);
+              
+                if (b.Contains(tempRight))
+                {
+                    left = false;
+                    start = true;
+                    speedLeft = 1;
+                    
+                }
+                else if (b.Contains(tempLeft))
+                {
+                    left = true;
+                    start = true;
+                    speedLeft = 1;
+                }
+                else if (b.Contains(tempCenter))
+                {
+
+                    //start = true;
+                    if (left == true)
+                    {
+                        left = false;
+                        start = true;
+                        speedLeft = 0.7;
+                    }
+                    else if (left == false)
+                    {
+                        speedLeft = 0.7;
+                        left = true;
+                        start = true;
+                    }
+                }
+                else if (b.Contains(tempLeftPart))
+                {
+                    left = true;
+                    start = true;
+                    speedLeft = 2;
+                }
+                else if (b.Contains(tempRightPart))
+                {
+                    left = false;
+                    start = true;
+                    speedLeft = 2;
+                }
+
+
             }
             if (Canvas.GetTop(Ball) <= 70)
             {
                 top = false;
-            }           
+            }
+            
+            //if (top == true)
+            //{
+            //    Canvas.SetTop(Ball, Canvas.GetTop(Ball) - speedTop);
+
+            //}
+            //if (top == false)
+            //{
+            //    Canvas.SetTop(Ball, Canvas.GetTop(Ball) + speedTop);
+            //}
+            //if (Canvas.GetTop(Ball) <= 70)
+            //{
+            //    top = false;
+            //}           
             if (left == true)
             {
-                Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) - speedLeft);
+                if (start == true)
+                {
+                    Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) - speedLeft);
+                }
+                
             }
-            if (left == false)
+            if (left == false && start ==true)
             {
                 Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) + speedLeft);
             }
@@ -472,14 +590,10 @@ namespace Arkanoid1986
             {
                 left = true;
             }
-            if (CheckColisionBallRocket()==true)
+           
+            else if (CheckLoose() == true)
             {
-                top = true;
-                //hit.Play();
-            }
-            else if(CheckLoose() == true)
-            {
-                if (life==0)
+                if (life == 0)
                 {
                     timer.Stop();
                     MessageBox.Show("You loose");
@@ -501,11 +615,13 @@ namespace Arkanoid1986
                     Highscore.Text = "High Score:  " + highscore.ToString();
                     loose = true;
                     score = 0;
-                    Score.Text = "SCORE:     " + score.ToString();
-                    speedLeft = 3;
+                    Score.Text = "SCORE:     " + score.ToString();                  
                     speedTop = 5;
-                    level = 1;                   
+                    level = 1;
                     Level.Text = "Level:    " + level.ToString();
+
+                    start = false;
+                    top = true; left = true;
                 }
                 else
                 {
@@ -522,28 +638,43 @@ namespace Arkanoid1986
                     {
                         life3.Visibility = Visibility.Hidden;
                     }
-                    
-                    
-                  
+
+
+
                     timer.Stop();
                     Canvas.SetTop(Ball, topCoordBall);
                     Canvas.SetLeft(Ball, leftCoordBall);
                     Canvas.SetLeft(rocket, leftCoordRocket);
                 }
-                
+
             }
             if (CheckCollisionBlocks() == true)
             {
+                //int colBlockBot = (int)colBlock.Bottom+24;
+                //int bTop = (int)b.Bottom;
+                //int colBlockTop = (int)colBlock.Top-23;
+                //int bBot = (int)b.Top;
+                
+                //if (colBlockBot == bTop)
+                //{
+                //    top = false;
+                //}
+                //else if(colBlockTop == bBot)
+                //{
+                //    top = true;
+                //}
+                
+
                 top = false;
                 score += 10;
                 Score.Text = "SCORE:     " + score.ToString();
                 if (soud == true)
                 {
                     CheckSoundHit();
-                    
-                }               
+
+                }
             }
-            if (_bricks.Count()==0)
+            if (_bricks.Count() == 0)
             {
                 timer.Stop();
                 MessageBox.Show("You win");
@@ -551,14 +682,17 @@ namespace Arkanoid1986
                 Canvas.SetTop(Ball, topCoordBall);
                 Canvas.SetLeft(Ball, leftCoordBall);
                 Canvas.SetLeft(rocket, leftCoordRocket);
-                win = true;
-                speedLeft += 1;
+                win = true;              
                 speedTop += 1;
-                level++;               
+                level++;
                 Level.Text = "Level:    " + level.ToString();
+
+
+                start = false;
+                top = true; left = true;
             }
         }
-        
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationWindow win = new NavigationWindow();
@@ -602,29 +736,54 @@ namespace Arkanoid1986
             pause_Click(sender, e);
             if (saveLoadGame.ShowDialog()==true)
             {
-                if (NewSaveName.SaveName.Length!=0)
+                if (NewSaveName.SaveName.Length!=0&& canSave == true)
                 {
                     SaveGame(NewSaveName.SaveName);
                     NewSaveName.SaveName = "";
                 }
-                if (SaveLoadGame.NameFile.Length!=0)
+                else if(SaveLoadGame.NameFile.Length != 0)
                 {
                     load = true;
-                    LoadGame(SaveLoadGame.NameFile);                    
+                    canSave = true;
+                    LoadGame(SaveLoadGame.NameFile);
                     SaveLoadGame.NameFile = "";
-
                 }
+                else if(SaveLoadGame.OverWrite.Length != 0 && canSave == true)
+                {
+                    SaveGame(SaveLoadGame.OverWrite);
+                    SaveLoadGame.OverWrite = "";
+                }
+                else
+                {
+                    MessageBox.Show("Start the game first");
+                }
+               
+                //if (SaveLoadGame.NameFile.Length!=0)
+                //{
+                //    load = true;
+                //    LoadGame(SaveLoadGame.NameFile);                    
+                //    SaveLoadGame.NameFile = "";
+
+                //}
+                //if (SaveLoadGame.OverWrite.Length!=0&&CheckStartGame()==true)
+                //{
+                //    SaveGame(SaveLoadGame.OverWrite);
+                //    SaveLoadGame.OverWrite = "";
+                //}
+                
                 
                 
             }
             //SaveGame();
         }
 
+        
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            
+          
             if (e.Key == Key.G && CheckStartGame() == false&& load ==false)
             {
+                canSave = true;
                 canvasGame.Focus();
                 mp.Stop();
                 Button_Click(sender, e);
@@ -632,6 +791,7 @@ namespace Arkanoid1986
             }
             if (e.Key == Key.G && CheckStartGame() == false && load == true)
             {
+                canSave = true;
                 mp.Stop();
                 labelStartGame.Visibility = Visibility.Hidden;
                 //timer.Interval = TimeSpan.FromMilliseconds(10);

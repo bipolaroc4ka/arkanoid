@@ -23,6 +23,8 @@
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Load" Click="MenuItem_Click" />
+                    <MenuItem Header="Оverwrite this save? " Click="MenuItem_Click_1" />
+                    <MenuItem Header="Delete this save?! " Click="MenuItem_Click_2"  />
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
